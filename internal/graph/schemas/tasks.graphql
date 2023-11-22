@@ -1,0 +1,39 @@
+enum TaskStatus {
+  SOON
+  NOW
+  INPROGRESS
+  PENDING
+  TESTING
+  READYFORPROD
+  RELEASED
+  DONE
+}
+
+type Task {
+  id: UUID!
+  name: String!
+  status: TaskStatus!
+  description: String
+  author: User!
+  assignedTo: [User]
+  createdAt: Int!
+  updatedAt: Int!
+  removedAt: Int
+}
+
+input NewTask {
+  name: String!
+  description: String
+  status: TaskStatus!
+}
+
+extend type Query {
+  tasks: [Task!]!
+  task(id: ID!): Task
+}
+
+extend type Mutation {
+  createTask(input: NewTask!): Task!
+  updateTask(id: ID!, name: String!, description: String): Task!
+  deleteTask(id: ID!): Boolean!
+}

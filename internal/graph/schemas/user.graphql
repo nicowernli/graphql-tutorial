@@ -1,0 +1,23 @@
+type User {
+  id: UUID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  createdAt: Int!
+  updatedAt: Int!
+  removedAt: Int
+}
+
+input NewUser {
+  email: String!
+  firstName: String
+  lastName: String
+}
+
+extend type Query {
+  users: [User!]!
+}
+
+extend type Mutation {
+  createUser(input: NewUser!): User!
+}

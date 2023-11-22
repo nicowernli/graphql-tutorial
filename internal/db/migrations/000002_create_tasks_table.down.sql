@@ -1,0 +1,2 @@
+TRUNCATE Tasks;
+DROP TABLE IF EXISTS Tasks;

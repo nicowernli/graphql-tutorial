@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS Users(
+    ID VARCHAR(36) PRIMARY KEY,
+    Email VARCHAR (255) NOT NULL UNIQUE,
+    FirstName VARCHAR (255),
+    LastName VARCHAR (255),
+    CreatedAt INTEGER NOT NULL,
+    UpdatedAt INTEGER NOT NULL,
+    RemovedAt INTEGER,
+    INDEX(RemovedAt)
+);
