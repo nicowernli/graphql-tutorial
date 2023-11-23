@@ -17,11 +17,14 @@ generate:
 token:
 	curl --request POST \
   --url 'https://${AUTH0_DOMAIN}/oauth/token' \
-  --header 'content-type: application/x-www-form-urlencoded' \
-  --data grant_type=client_credentials \
-  --data client_id=${AUTH0_CLIENT_ID} \
-  --data client_secret=${AUTH0_CLIENT_SECRET_ID} \
-  --data audience=${AUTH0_AUDIENCE}
+  --header 'content-type: application/json' \
+	--data '{ \
+			"client_id":"${AUTH0_CLIENT_ID}", \
+			"client_secret":"${AUTH0_CLIENT_SECRET_ID}", \
+			"audience":"${AUTH0_AUDIENCE}", \
+			"grant_type": "password", \
+			"username":"${AUTH0_TEST_USERNAME}", \
+			"password":"${AUTH0_TEST_PASSWORD}"}'
 
 migration:
 	migrate create -ext sql -dir internal/db/migrations -seq $(name)
